@@ -1,4 +1,5 @@
 import React, { FC, useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import moment from 'moment/moment'
 
 import { getChannels } from 'apis/channels/channels.api'
@@ -6,6 +7,7 @@ import { Event, ResponseChannel } from 'apis/channels/channels.types'
 
 import List from 'components/List'
 import Program from 'components/Program'
+import Loader from 'components/Loader'
 
 import styles from './Channel.module.css'
 
@@ -80,6 +82,8 @@ const Channels: FC = () => {
 
   return (
     <div className={styles.main}>
+      {!channels?.total && createPortal(<Loader />, document.body)}
+
       <div className={styles.info}>
         {eventInfo.id && (
           <div style={{ height: '100%' }}>

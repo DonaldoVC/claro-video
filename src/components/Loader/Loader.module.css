@@ -1,0 +1,18 @@
+.main {
+  box-shadow: rgba(103, 103, 112, 0.3) 0 2px 19px 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  
+  & > div {
+    margin: 0 auto;
+    width: fit-content;
+  }
+}
