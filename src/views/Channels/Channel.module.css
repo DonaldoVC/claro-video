@@ -1,0 +1,64 @@
+.info {
+  color: white;
+  width: 40%;
+  height: calc(40vh - 20px);
+  padding: 10px;
+  
+  & > div {
+    height: 100%;
+  }
+}
+
+.main {
+  overflow: hidden;
+  position: relative;
+}
+
+.content {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 60vh;
+  
+  & > .channels {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    overflow-x: auto;
+    
+    & .schedule {
+      background-color: #000000;
+      height: 50px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      position: absolute;
+      top: calc(40vh - 50px);
+
+      & > .today {
+        margin: auto;
+      }
+
+      & > .scheduleContent {
+        text-align: left;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 100vw;
+      }
+
+      & span {
+        display: inline-block;
+        color: #ffffff;
+        width: 120px;
+      }
+    }
+    
+    & > .channelList {
+      background-color: #000000;
+    }
+
+    & > .program {
+      white-space: nowrap;
+      overflow-x: auto;
+      background-color: #000000;
+    }
+  }
+}

@@ -1,0 +1,25 @@
+.main {
+  display: inline-block;
+  width: 200px;
+  padding: 4px 10px;
+  height: 92px;
+  
+  & > .channel {
+    background-color: #1A1A1A;
+    border-radius: 10px;
+    height: 100%;
+    padding-left: 10px;
+
+    & > .number {
+      display: inline-block;
+      vertical-align: middle;
+      color: #ffffff;
+    }
+
+    & > .img {
+      display: inline-block;
+      vertical-align: middle;
+      height: 80px;
+    }
+  }
+}

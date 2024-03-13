@@ -1,24 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import {createPortal} from "react-dom";
 
-function App() {
+import Modal from "components/Modal";
+import Channels from "views/Channels";
+import styles from './App.module.css';
+
+const App = () => {
+  const [showModal, setShowModal] = useState(false);  
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <button className={styles.button} onClick={() => setShowModal(true)}>Mostrar EPG</button>
+
+      {showModal && createPortal(
+        <Modal onClose={() => setShowModal(false)}>
+          <Channels />
+        </Modal>,
+        document.body
+      )}
     </div>
   );
 }
