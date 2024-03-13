@@ -89,7 +89,6 @@ const Channels: FC = () => {
           <div style={{ height: '100%' }}>
             <h1>{eventInfo.name}</h1>
 
-            <p>{eventInfo.description}</p>
             <p>
               <span>
                 {`${moment(eventInfo.date_begin).format('HH.mm')}hs.`} a{' '}
@@ -97,6 +96,8 @@ const Channels: FC = () => {
               </span>
               <span>{eventInfo.duration}</span>
             </p>
+
+            <p>{eventInfo.description}</p>
           </div>
         )}
       </div>
