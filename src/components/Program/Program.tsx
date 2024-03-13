@@ -8,19 +8,21 @@ const Program: FC<ProgramTypes> = ({ event, isFirstElement, onMouseOver }) => {
   const [date, setDate] = useState<Moment>()
 
   useEffect(() => {
-    const now = moment()
+    if (isFirstElement) {
+      const now = moment()
 
-    if (Number(now.format('mm')) < 30) {
-      now.minutes(0)
-    } else {
-      now.minutes(30)
+      if (Number(now.format('mm')) < 30) {
+        now.minutes(0)
+      } else {
+        now.minutes(30)
+      }
+
+      setDate(now)
     }
+  }, [isFirstElement])
 
-    setDate(now)
-  }, [])
-
-  const width = moment(event.date_end).diff(
-    moment(isFirstElement ? date : event.date_begin),
+  const width = moment(event.date_end, 'YYYY/MM/DD HH:mm:ss').diff(
+    isFirstElement ? date : moment(event.date_begin, 'YYYY/MM/DD HH:mm:ss'),
     'minutes'
   )
 
@@ -29,10 +31,14 @@ const Program: FC<ProgramTypes> = ({ event, isFirstElement, onMouseOver }) => {
       className={styles.main}
       style={{ width: `${width * 4 - 2}px`, maxWidth: `${width * 4 - 2}px` }}
       onMouseOver={() => onMouseOver(event)}
+      data-testid="program-content"
     >
-      <span className={styles.name}>{event.name}</span>
-      <span className={styles.time}>
-        {moment(event.date_begin).format('HH:mm')} - {moment(event.date_end).format('HH:mm')}
+      <span className={styles.name} data-testid="program-name">
+        {event.name}
+      </span>
+      <span className={styles.time} data-testid="program-time">
+        {moment(event.date_begin, 'YYYY/MM/DD HH:mm:ss').format('HH:mm')} -{' '}
+        {moment(event.date_end, 'YYYY/MM/DD HH:mm:ss').format('HH:mm')}
       </span>
     </div>
   )

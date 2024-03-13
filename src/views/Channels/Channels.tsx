@@ -1,5 +1,4 @@
 import React, { FC, useEffect, useRef, useState } from 'react'
-import { createPortal } from 'react-dom'
 import moment from 'moment/moment'
 
 import { getChannels } from 'apis/channels/channels.api'
@@ -32,7 +31,8 @@ const Channels: FC = () => {
 
     channels?.channels.forEach(channel => {
       const reduce = channel.events.reduce(
-        (a, b) => a + moment(b.date_end).diff(moment(b.date_begin), 'minutes'),
+        (a, b) =>
+          a + moment(b.date_end).diff(moment(b.date_begin, 'YYYY/MM/DD HH:mm:ss'), 'minutes'),
         0
       )
 
@@ -72,7 +72,9 @@ const Channels: FC = () => {
   }
 
   const handleSetInfo = (event: Event) => {
-    const duration = moment.duration(moment(event.date_end).diff(moment(event.date_begin)))
+    const duration = moment.duration(
+      moment(event.date_end).diff(moment(event.date_begin, 'YYYY/MM/DD HH:mm:ss'))
+    )
 
     setEvent({
       ...event,
@@ -82,22 +84,22 @@ const Channels: FC = () => {
 
   return (
     <div className={styles.main}>
-      {!channels?.total && createPortal(<Loader />, document.body)}
+      {!channels?.total && <Loader />}
 
       <div className={styles.info}>
         {eventInfo.id && (
           <div style={{ height: '100%' }}>
-            <h1>{eventInfo.name}</h1>
+            <h1 data-testid="eventInfo-name">{eventInfo.name}</h1>
 
             <p>
-              <span>
-                {`${moment(eventInfo.date_begin).format('HH.mm')}hs.`} a{' '}
-                {`${moment(eventInfo.date_end).format('HH.mm')}hs. `}
+              <span data-testid="eventInfo-schedule">
+                {`${moment(eventInfo.date_begin, 'YYYY/MM/DD HH:mm:ss').format('HH.mm')}hs.`} a{' '}
+                {`${moment(eventInfo.date_end, 'YYYY/MM/DD HH:mm:ss').format('HH.mm')}hs. `}
               </span>
-              <span>{eventInfo.duration}</span>
+              <span data-testid="eventInfo-duration">{eventInfo.duration}</span>
             </p>
 
-            <p>{eventInfo.description}</p>
+            <p data-testid="eventInfo-description">{eventInfo.description}</p>
           </div>
         )}
       </div>

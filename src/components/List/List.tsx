@@ -7,8 +7,15 @@ const List: FC<ListTypes> = ({ channel }) => {
   return (
     <div className={styles.main}>
       <div className={styles.channel}>
-        <span className={styles.number}>{channel.number}</span>
-        <img src={channel.image} className={styles.img} alt={channel.name} />
+        <span className={styles.number} data-testid="channel-number">
+          {channel.number}
+        </span>
+        <img
+          src={channel.image}
+          className={styles.img}
+          alt={channel.name}
+          data-testid="channel-img"
+        />
       </div>
     </div>
   )

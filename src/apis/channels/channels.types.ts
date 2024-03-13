@@ -20,54 +20,54 @@ export type Channel = {
 }
 
 export type Event = {
-  aud_dolby: null
-  aud_stereo: null
-  channel_id: string
-  confirmado: null
-  date_begin: string
-  date_end: string
-  description: null
-  duration: string
-  dvb_content: null
-  event_alf_id: null
-  ext_actors: null
-  ext_catchup: null
-  ext_country: null
-  ext_director: null
-  ext_ep_original_name: null
-  ext_episode_id: null
-  ext_eventimage_name: string
-  ext_eventimage_name_base: string
-  ext_language: null
-  ext_ncont_id: null
-  ext_nevt_id: null
-  ext_original_name: null
-  ext_recordable: null
-  ext_season_id: null
-  ext_serie_desc: null
-  ext_serie_short_desc: null
-  ext_series_id: null
-  ext_startover: null
-  ext_year: null
-  gmt: number
-  group_id: null
-  group_rel: null
-  id: string
-  id_empleado: null
-  image_base_horizontal: string
-  image_base_square: string
-  image_base_vertical: string
-  language: null
-  name: string
-  parental_rating: null
-  source_uri: string
-  talent: null
-  tms_id: null
-  type: null
-  unix_begin: number
-  unix_end: number
-  user_content: null
-  vid_black_and_white: null
+  'channel_id': string,
+  'source_uri': string,
+  'id': string,
+  'name': string,
+  'description': string,
+  'talent': null,
+  'date_begin': string,
+  'date_end': string,
+  'unix_begin': number,
+  'unix_end': number,
+  'duration': string,
+  'language': string,
+  'type': string,
+  'group_id': null,
+  'confirmado': null,
+  'id_empleado': null,
+  'tms_id': null,
+  'event_alf_id': string,
+  'ext_ncont_id': string,
+  'ext_nevt_id': string,
+  'ext_actors': null,
+  'ext_director': null,
+  'ext_year': null,
+  'ext_country': string | null,
+  'ext_original_name': string,
+  'ext_ep_original_name': null,
+  'ext_series_id': string | null,
+  'ext_season_id': string | null,
+  'ext_episode_id': string | null,
+  'ext_language': string,
+  'ext_serie_short_desc': null,
+  'ext_serie_desc': null,
+  'image_base_horizontal': string,
+  'image_base_vertical': string,
+  'image_base_square': string,
+  'ext_eventimage_name': string,
+  'ext_eventimage_name_base': string,
+  'ext_catchup': string,
+  'ext_startover': string,
+  'ext_recordable': string,
+  'parental_rating': string,
+  'aud_stereo': string,
+  'aud_dolby': string,
+  'vid_black_and_white': string,
+  'dvb_content': string | null,
+  'user_content': null,
+  'group_rel': null,
+  'gmt': number,
 }
 
 type Group = {
@@ -107,14 +107,14 @@ type Group = {
     proveedor_code: string
     proveedor_name: string
     rating_code: string
-    recorder_technology: { id: string; desc: string }
+    recorder_technology: { id: string | null; desc: string | null }
     resource_name: null
     rollingcreditstime: null
     rollingcreditstimedb: null
     season_number: null
     short_description: null
     source_uri: string
-    timeshift: string
+    timeshift: string | null
     title: string
     title_episode: null
     title_original: string
