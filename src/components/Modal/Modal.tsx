@@ -1,21 +1,19 @@
-import React, {FC} from "react";
+import React, { FC } from 'react'
 
-import {ReactComponent as CloseIcon} from 'assets/icons/close.svg';
+import { ReactComponent as CloseIcon } from 'assets/icons/close.svg'
 
 import styles from './Modal.module.css'
-import {ModalTypes} from "./Modal.types";
+import { ModalTypes } from './Modal.types'
 
-const Modal: FC<ModalTypes> = ({onClose, children}) => {
+const Modal: FC<ModalTypes> = ({ onClose, children }) => {
   return (
     <div className={styles.modal}>
       <div className={styles.close}>
         <button onClick={onClose}>
-          <CloseIcon/>
+          <CloseIcon />
         </button>
       </div>
-      <div className={styles.body}>
-        {children}
-      </div>
+      <div className={styles.body}>{children}</div>
     </div>
   )
 }

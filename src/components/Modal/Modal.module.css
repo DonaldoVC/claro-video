@@ -1,12 +1,12 @@
 .modal {
   box-shadow: rgba(103, 103, 112, 0.3) 0 2px 19px 0;
   background-color: rgba(0, 0, 0, 0.9);
-  position:  absolute;
+  position: absolute;
   width: 100%;
   left: 0;
   top: 0;
   overflow: hidden;
-  
+
   & > .close {
     position: relative;
     width: 100%;

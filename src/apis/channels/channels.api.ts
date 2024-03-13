@@ -1,12 +1,13 @@
-import axios from "axios";
-import {API} from "constants/api";
-import {ResponseChannel} from "./channels.types";
-import moment from "moment";
+import axios from 'axios'
+import moment from 'moment'
+
+import { API } from 'constants/api'
+import { ResponseChannel } from './channels.types'
 
 export const getChannels = async (): Promise<ResponseChannel> => {
   const now = moment()
-  
-  const {data} = await axios.get(API, {
+
+  const { data } = await axios.get(API, {
     params: {
       device_id: 'web',
       device_category: 'web',
@@ -25,7 +26,7 @@ export const getChannels = async (): Promise<ResponseChannel> => {
       date_from: `${now.format('YYYYMMDDHH')}0000`,
       date_to: `${now.add(1, 'day').format('YYYYMMDDHH')}0000`,
       quantity: '200',
-    }
+    },
   })
 
   return data.response

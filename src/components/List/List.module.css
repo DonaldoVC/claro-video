@@ -3,9 +3,9 @@
   width: 200px;
   padding: 4px 10px;
   height: 92px;
-  
+
   & > .channel {
-    background-color: #1A1A1A;
+    background-color: #1a1a1a;
     border-radius: 10px;
     height: 100%;
     padding-left: 10px;

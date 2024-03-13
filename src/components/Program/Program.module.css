@@ -1,10 +1,10 @@
 .main {
-  background-color: #1A1A1A;
+  background-color: #1a1a1a;
   display: inline-block;
   height: 98px;
   border: 1px solid #585858;
   cursor: pointer;
-  
+
   & > span {
     margin: 5px;
     color: #ffffff;
@@ -14,11 +14,11 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  
+
   .name {
     min-height: 22px;
   }
-  
+
   .time {
     font-size: 12px;
   }

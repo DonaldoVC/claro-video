@@ -76,9 +76,7 @@ type Group = {
     date: string
     description: string
     description_large: string
-    duration
-      :
-      null
+    duration: null
     encoder_tecnology: {
       desc: string
       id: string
@@ -109,7 +107,7 @@ type Group = {
     proveedor_code: string
     proveedor_name: string
     rating_code: string
-    recorder_technology: { id: string, desc: string }
+    recorder_technology: { id: string; desc: string }
     resource_name: null
     rollingcreditstime: null
     rollingcreditstimedb: null
