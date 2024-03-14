@@ -3,14 +3,14 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { act } from 'react-dom/test-utils'
 import axios from 'axios'
 
-import Channels from 'views/Channels'
+import Epg from 'views/Epg'
 
-import { CHANNEL_MOCK } from './Channels.mock'
+import { CHANNEL_MOCK } from './Epg.mock'
 
 jest.mock('axios')
 const mockedAxios = axios as jest.Mocked<typeof axios>
 
-describe('Test on <Channels />', () => {
+describe('Test on <Epg />', () => {
   beforeEach(() => {
     jest.clearAllMocks()
   })
@@ -25,7 +25,7 @@ describe('Test on <Channels />', () => {
       },
     })
 
-    render(<Channels />)
+    render(<Epg />)
 
     await act(async () => {
       expect(screen.getByTestId('loader')).toBeTruthy()
@@ -39,7 +39,7 @@ describe('Test on <Channels />', () => {
       },
     })
 
-    render(<Channels />)
+    render(<Epg />)
 
     await waitFor(async () => {
       expect(screen.getByTestId('content')).toBeTruthy()
@@ -53,7 +53,7 @@ describe('Test on <Channels />', () => {
       },
     })
 
-    render(<Channels />)
+    render(<Epg />)
 
     await waitFor(async () => {
       expect(screen.getByTestId('schedule')).toBeTruthy()
@@ -77,7 +77,7 @@ describe('Test on <Channels />', () => {
       },
     })
 
-    render(<Channels />)
+    render(<Epg />)
 
     await waitFor(async () => {
       const container = screen.getAllByTestId(/^channel-content/)
@@ -95,7 +95,7 @@ describe('Test on <Channels />', () => {
 
     const elements = CHANNEL_MOCK.channels.reduce((a, b) => a + b.events.length, 0)
 
-    render(<Channels />)
+    render(<Epg />)
 
     await waitFor(async () => {
       const container = screen.getAllByTestId(/^program-content/)
@@ -111,7 +111,7 @@ describe('Test on <Channels />', () => {
       },
     })
 
-    render(<Channels />)
+    render(<Epg />)
 
     await waitFor(async () => {
       expect(screen.getByTestId('content')).toBeTruthy()
@@ -130,7 +130,7 @@ describe('Test on <Channels />', () => {
       },
     })
 
-    render(<Channels />)
+    render(<Epg />)
 
     await waitFor(async () => {
       expect(screen.getByTestId('content')).toBeTruthy()

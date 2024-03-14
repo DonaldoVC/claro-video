@@ -1,11 +1,19 @@
 .info {
   color: white;
-  width: 40%;
+  width: 50%;
   height: calc(40vh - 20px);
   padding: 10px;
 
   & > div {
     height: 100%;
+
+    & > p {
+      display: -webkit-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
   }
 }
 

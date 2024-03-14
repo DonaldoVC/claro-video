@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react'
 
 import Channel from 'components/Channel'
 
-import { CHANNEL_MOCK } from '__test__/views/Channels/Channels.mock'
+import { CHANNEL_MOCK } from '__test__/views/Epg/Epg.mock'
 
 describe('Test on <Channel />', () => {
   const mockChannel = CHANNEL_MOCK.channels[0]

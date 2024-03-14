@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from '@testing-library/react'
 
 import Program from 'components/Program'
 
-import { CHANNEL_MOCK } from '__test__/views/Channels/Channels.mock'
+import { CHANNEL_MOCK } from '__test__/views/Epg/Epg.mock'
 
 describe('Test on <Program />', () => {
   const mockEvent = CHANNEL_MOCK.channels[0].events[0]

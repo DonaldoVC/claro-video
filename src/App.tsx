@@ -1,25 +1,27 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react'
 
-import Modal from "components/Modal";
+import Modal from 'components/Modal'
 
-import Channels from "views/Channels";
+import Epg from 'views/Epg'
 
-import styles from './App.module.css';
+import styles from './App.module.css'
 
 const App = () => {
-  const [showModal, setShowModal] = useState(false);  
-  
+  const [showModal, setShowModal] = useState(false)
+
   return (
     <div>
-      <button className={styles.button} onClick={() => setShowModal(true)}>Mostrar EPG</button>
+      <button className={styles.button} onClick={() => setShowModal(true)}>
+        Mostrar EPG
+      </button>
 
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <Channels />
+          <Epg />
         </Modal>
       )}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -10,9 +10,9 @@ import Loader from 'components/Loader'
 
 import { FORMAT_API_DATE } from 'constants/format'
 
-import styles from './Channel.module.css'
+import styles from './Epg.module.css'
 
-const Channels: FC = () => {
+const Epg: FC = () => {
   const channelScrollRef = useRef<any>(null)
   const scheduleScrollRef = useRef<any>(null)
 
@@ -159,4 +159,4 @@ const Channels: FC = () => {
   )
 }
 
-export default Channels
+export default Epg
