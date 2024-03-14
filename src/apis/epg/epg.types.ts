@@ -1,4 +1,4 @@
-export type ResponseChannel = {
+export type ResponseEPG = {
   channels: Channel[]
   total: number
 }

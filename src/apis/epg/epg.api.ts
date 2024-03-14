@@ -2,9 +2,9 @@ import axios from 'axios'
 import moment from 'moment'
 
 import { API } from 'constants/api'
-import { ResponseChannel } from './channels.types'
+import { ResponseEPG } from './epg.types'
 
-export const getChannels = async (): Promise<ResponseChannel> => {
+export const getEPG = async (): Promise<ResponseEPG> => {
   const now = moment()
 
   const { data } = await axios.get(API, {

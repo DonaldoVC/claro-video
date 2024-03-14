@@ -1,8 +1,8 @@
 import React, { FC, useEffect, useRef, useState } from 'react'
 import moment from 'moment/moment'
 
-import { getChannels } from 'apis/channels/channels.api'
-import { Event, ResponseChannel } from 'apis/channels/channels.types'
+import { getEPG } from 'apis/epg/epg.api'
+import { Event, ResponseEPG } from 'apis/epg/epg.types'
 
 import Channel from 'components/Channel'
 import Program from 'components/Program'
@@ -16,14 +16,14 @@ const Epg: FC = () => {
   const channelScrollRef = useRef<any>(null)
   const scheduleScrollRef = useRef<any>(null)
 
-  const [channels, setChannels] = useState<ResponseChannel>()
+  const [channels, setChannels] = useState<ResponseEPG>()
   const [maxWidth, setMaxWidth] = useState(0)
   const [schedule, setSchedule] = useState<string[]>([])
   const [now, setNow] = useState(moment())
   const [eventInfo, setEvent] = useState({} as Event)
 
   useEffect(() => {
-    getChannels().then(response => {
+    getEPG().then(response => {
       setChannels(response)
     })
   }, [])

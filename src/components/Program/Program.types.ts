@@ -1,4 +1,4 @@
-import { Event } from 'apis/channels/channels.types'
+import { Event } from 'apis/epg/epg.types'
 
 export type ProgramTypes = {
   isFirstElement?: boolean
