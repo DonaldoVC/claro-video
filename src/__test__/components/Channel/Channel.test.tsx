@@ -1,11 +1,11 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
 
-import List from 'components/List'
+import Channel from 'components/Channel'
 
-import { CHANNEL_MOCK } from '__test__/views/Channel/Channel.mock'
+import { CHANNEL_MOCK } from '__test__/views/Channels/Channels.mock'
 
-describe('Test on <List />', () => {
+describe('Test on <Channel />', () => {
   const mockChannel = CHANNEL_MOCK.channels[0]
 
   beforeEach(() => {
@@ -13,14 +13,14 @@ describe('Test on <List />', () => {
   })
 
   it('should render component', () => {
-    render(<List channel={mockChannel} />)
+    render(<Channel channel={mockChannel} />)
 
     expect(screen.getByTestId('channel-number')).toBeTruthy()
     expect(screen.getByTestId('channel-img')).toBeTruthy()
   })
 
   it('should render data in component', () => {
-    render(<List channel={mockChannel} />)
+    render(<Channel channel={mockChannel} />)
 
     const img = screen.getByTestId('channel-img')
 

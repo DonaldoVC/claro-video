@@ -1,11 +1,11 @@
 import React, { FC } from 'react'
 
-import styles from './List.module.css'
-import { ListTypes } from './List.types'
+import styles from './Channel.module.css'
+import { ChannelTypes } from './Channel.types'
 
-const List: FC<ListTypes> = ({ channel }) => {
+const Channel: FC<ChannelTypes> = ({ channel }) => {
   return (
-    <div className={styles.main}>
+    <div className={styles.main} data-testid={`channel-content-${channel.number}`}>
       <div className={styles.channel}>
         <span className={styles.number} data-testid="channel-number">
           {channel.number}
@@ -21,4 +21,4 @@ const List: FC<ListTypes> = ({ channel }) => {
   )
 }
 
-export default List
+export default Channel

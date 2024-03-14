@@ -4,9 +4,11 @@ import moment from 'moment/moment'
 import { getChannels } from 'apis/channels/channels.api'
 import { Event, ResponseChannel } from 'apis/channels/channels.types'
 
-import List from 'components/List'
+import Channel from 'components/Channel'
 import Program from 'components/Program'
 import Loader from 'components/Loader'
+
+import { FORMAT_API_DATE } from 'constants/format'
 
 import styles from './Channel.module.css'
 
@@ -32,7 +34,11 @@ const Channels: FC = () => {
     channels?.channels.forEach(channel => {
       const reduce = channel.events.reduce(
         (a, b) =>
-          a + moment(b.date_end).diff(moment(b.date_begin, 'YYYY/MM/DD HH:mm:ss'), 'minutes'),
+          a +
+          moment(b.date_end, FORMAT_API_DATE).diff(
+            moment(b.date_begin, FORMAT_API_DATE),
+            'minutes'
+          ),
         0
       )
 
@@ -73,7 +79,7 @@ const Channels: FC = () => {
 
   const handleSetInfo = (event: Event) => {
     const duration = moment.duration(
-      moment(event.date_end).diff(moment(event.date_begin, 'YYYY/MM/DD HH:mm:ss'))
+      moment(event.date_end, FORMAT_API_DATE).diff(moment(event.date_begin, FORMAT_API_DATE))
     )
 
     setEvent({
@@ -84,61 +90,71 @@ const Channels: FC = () => {
 
   return (
     <div className={styles.main}>
-      {!channels?.total && <Loader />}
+      {!channels?.total ? (
+        <Loader />
+      ) : (
+        <>
+          <div className={styles.info}>
+            {eventInfo.id && (
+              <div style={{ height: '100%' }}>
+                <h1 data-testid="eventInfo-name">{eventInfo.name}</h1>
 
-      <div className={styles.info}>
-        {eventInfo.id && (
-          <div style={{ height: '100%' }}>
-            <h1 data-testid="eventInfo-name">{eventInfo.name}</h1>
+                <p>
+                  <span data-testid="eventInfo-schedule">
+                    {`${moment(eventInfo.date_begin, FORMAT_API_DATE).format('HH.mm')}hs.`} a{' '}
+                    {`${moment(eventInfo.date_end, FORMAT_API_DATE).format('HH.mm')}hs. `}
+                  </span>
+                  <span data-testid="eventInfo-duration">{eventInfo.duration}</span>
+                </p>
 
-            <p>
-              <span data-testid="eventInfo-schedule">
-                {`${moment(eventInfo.date_begin, 'YYYY/MM/DD HH:mm:ss').format('HH.mm')}hs.`} a{' '}
-                {`${moment(eventInfo.date_end, 'YYYY/MM/DD HH:mm:ss').format('HH.mm')}hs. `}
-              </span>
-              <span data-testid="eventInfo-duration">{eventInfo.duration}</span>
-            </p>
-
-            <p data-testid="eventInfo-description">{eventInfo.description}</p>
-          </div>
-        )}
-      </div>
-
-      <div className={styles.content}>
-        <div className={styles.channels}>
-          <div className={styles.channelList}>
-            <div className={styles.schedule} style={{ width: '220px' }} />
-
-            {channels?.channels.map(channel => <List key={channel.id} channel={channel} />)}
+                <p data-testid="eventInfo-description">{eventInfo.description}</p>
+              </div>
+            )}
           </div>
 
-          <div className={styles.program} onScroll={handleScroll} ref={channelScrollRef}>
-            <div className={styles.schedule} style={{ width: `${maxWidth}px` }}>
-              <div className={styles.scheduleContent} ref={scheduleScrollRef}>
-                {schedule.map((time, index) => (
-                  <span key={`${index}-${time}`}>{time}</span>
+          <div className={styles.content} data-testid="content">
+            <div className={styles.channels}>
+              <div className={styles.channelList}>
+                <div className={styles.schedule} style={{ width: '220px' }} />
+
+                {channels?.channels.map(channel => <Channel key={channel.id} channel={channel} />)}
+              </div>
+
+              <div className={styles.program} onScroll={handleScroll} ref={channelScrollRef}>
+                <div
+                  className={styles.schedule}
+                  style={{ width: `${maxWidth}px` }}
+                  data-testid="schedule"
+                >
+                  <div className={styles.scheduleContent} ref={scheduleScrollRef}>
+                    {schedule.map((time, index) => (
+                      <span key={`${index}-${time}`} data-testid={`schedule-element-${index}`}>
+                        {time}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {channels?.channels.map(channel => (
+                  <div key={`channel-${channel.id}`}>
+                    {channel.events.map(
+                      (event, index) =>
+                        now?.isAfter(moment(event.date_end, FORMAT_API_DATE)) && (
+                          <Program
+                            key={`${channel.id}-${event.id}`}
+                            event={event}
+                            isFirstElement={index === 0}
+                            onMouseOver={handleSetInfo}
+                          />
+                        )
+                    )}
+                  </div>
                 ))}
               </div>
             </div>
-
-            {channels?.channels.map(channel => (
-              <div key={`channel-${channel.id}`}>
-                {channel.events.map(
-                  (event, index) =>
-                    now?.isAfter(moment(event.date_end)) && (
-                      <Program
-                        key={`${channel.id}-${event.id}`}
-                        event={event}
-                        isFirstElement={index === 0}
-                        onMouseOver={handleSetInfo}
-                      />
-                    )
-                )}
-              </div>
-            ))}
           </div>
-        </div>
-      </div>
+        </>
+      )}
     </div>
   )
 }

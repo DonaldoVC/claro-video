@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from '@testing-library/react'
 
 import Program from 'components/Program'
 
-import { CHANNEL_MOCK } from '__test__/views/Channel/Channel.mock'
+import { CHANNEL_MOCK } from '__test__/views/Channels/Channels.mock'
 
 describe('Test on <Program />', () => {
   const mockEvent = CHANNEL_MOCK.channels[0].events[0]
@@ -30,7 +30,7 @@ describe('Test on <Program />', () => {
   it('to calculate content width', () => {
     render(<Program event={mockEvent} onMouseOver={onMouseOver} />)
 
-    const programContent = screen.getByTestId('program-content')
+    const programContent = screen.getByTestId(/^program-content/)
 
     expect(programContent).toHaveStyle('width: 1678px;')
     expect(programContent).toHaveStyle('maxWidth: 1678px;')
@@ -39,7 +39,7 @@ describe('Test on <Program />', () => {
   it('to calculate content width with isFirstElement', () => {
     render(<Program event={mockEvent} onMouseOver={onMouseOver} isFirstElement />)
 
-    const programContent = screen.getByTestId('program-content')
+    const programContent = screen.getByTestId(/^program-content/)
 
     expect(programContent).not.toHaveStyle('width: 1678px;')
     expect(programContent).not.toHaveStyle('maxWidth: 1678px;')
@@ -48,7 +48,7 @@ describe('Test on <Program />', () => {
   it('should call onMouseOver', () => {
     render(<Program event={mockEvent} onMouseOver={onMouseOver} />)
 
-    const programContent = screen.getByTestId('program-content')
+    const programContent = screen.getByTestId(/^program-content/)
 
     fireEvent.mouseOver(programContent)
 

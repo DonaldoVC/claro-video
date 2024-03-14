@@ -1,5 +1,5 @@
 import { Channel } from 'apis/channels/channels.types'
 
-export type ListTypes = {
+export type ChannelTypes = {
   channel: Channel
 }
