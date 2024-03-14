@@ -70,6 +70,25 @@ describe('Test on <Epg />', () => {
     })
   })
 
+  it('should scroll schedule with programs', async () => {
+    mockedAxios.get.mockResolvedValue({
+      data: {
+        response: CHANNEL_MOCK,
+      },
+    })
+
+    render(<Epg />)
+
+    await waitFor(async () => {
+      expect(screen.getByTestId('content')).toBeTruthy()
+    })
+
+    const programScroll = screen.getByTestId('program-scroll')
+    fireEvent.scroll(programScroll, { target: { scrollLeft: 500 } })
+
+    expect(screen.getByTestId('schedule-scroll').scrollLeft).toBe(500)
+  })
+
   it('should render channels', async () => {
     mockedAxios.get.mockResolvedValue({
       data: {

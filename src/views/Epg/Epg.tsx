@@ -120,13 +120,22 @@ const Epg: FC = () => {
                 {channels?.channels.map(channel => <Channel key={channel.id} channel={channel} />)}
               </div>
 
-              <div className={styles.program} onScroll={handleScroll} ref={channelScrollRef}>
+              <div
+                className={styles.program}
+                onScroll={handleScroll}
+                ref={channelScrollRef}
+                data-testid="program-scroll"
+              >
                 <div
                   className={styles.schedule}
                   style={{ width: `${maxWidth}px` }}
                   data-testid="schedule"
                 >
-                  <div className={styles.scheduleContent} ref={scheduleScrollRef}>
+                  <div
+                    className={styles.scheduleContent}
+                    ref={scheduleScrollRef}
+                    data-testid="schedule-scroll"
+                  >
                     {schedule.map((time, index) => (
                       <span key={`${index}-${time}`} data-testid={`schedule-element-${index}`}>
                         {time}
